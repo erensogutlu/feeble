@@ -1,0 +1,23 @@
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Test & Rapor Çıktı Dosyaları
+test_output.json
+test_output.html
+feeble_rapor.html
+*.log
+*.tmp
+
+# Geliştirme Ortamı & IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Sanal Ortamlar
+env/
+venv/
+.venv/

